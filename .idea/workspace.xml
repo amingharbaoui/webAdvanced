@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29984519-8ef9-483a-86d8-7c3c21698cfb" name="Changes" comment="" />
+    <list default="true" id="29984519-8ef9-483a-86d8-7c3c21698cfb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/web-advanced/src/javascript.svg" beforeDir="false" afterPath="$PROJECT_DIR$/web-advanced/src/javascript.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-advanced/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/web-advanced/src/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,9 +25,10 @@
     &quot;accountId&quot;: &quot;eefdf843-d43a-420f-89ac-8d769668d322&quot;
   }
 }</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "da3e3eff",
+  "associatedIndex": 4
+}]]></component>
   <component name="ProjectId" id="3AD2f5VSGwTp0XBzkzDposHxCem" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -39,7 +43,7 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Amin/Documents/amin_gharbaoui_webAdvanced",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -60,7 +64,7 @@
       <updated>1772112921923</updated>
       <workItem from="1772112923340" duration="4536000" />
       <workItem from="1772142900498" duration="186000" />
-      <workItem from="1772527971551" duration="173000" />
+      <workItem from="1772527971551" duration="955000" />
     </task>
     <servers />
   </component>
