@@ -1,0 +1,137 @@
+
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    font-family: General Sans, Sans Serif;
+    background: #e7e7e7;
+    color: #070707;
+}
+
+.navbar_container {
+    display: flex;
+    padding: 1.5em;
+    align-content: center;
+    align-items: center;
+}
+
+.navbar_container h2 {
+    font-family: Technor, Sans Serif;
+    display: flex;
+    color: #222222;
+    margin-right: 1em;
+    line-height: 25px;
+    font-size: 2.2rem;
+    flex-direction: column;
+    letter-spacing: -2px;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.navbar_container .search_bar {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.navbar_container .search_bar input {
+    border: 0;
+    font-family: General Sans, Sans Serif;
+    outline: 0;
+    width: 40%;
+    border: 1.3px solid white;
+    background: #efefef;
+    padding: 1.25em 12.2em 1.25em 1.8em ;
+    border-radius: 85px;
+}
+
+.navbar_container .search_bar input::placeholder {
+    color: #070707;
+    text-transform: capitalize;
+    opacity: .5;
+    font-weight: 500;
+    font-family: General Sans, Sans Serif;
+}
+.navbar_container .search_bar .search_bar_button_container {
+    display: flex;
+    align-items: center;
+    padding: .4em;
+    position: relative;
+}
+
+.navbar_container .search_bar_button_container .input_btn {
+    position: absolute;
+    display: flex;
+    left: -126px;
+    font-family: General Sans, Sans Serif;
+    gap: .85em;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #222222;
+    border-radius: 85px;
+    color: #fff;
+    padding: 1.1em 1.8em;
+    text-transform: capitalize;
+}
+
+
+.navbar_container .search_bar_button_container .input_btn:hover {
+    background: #2b2a2a;
+}
+
+.navbar_container .search_bar_button_container .input_btn .search_icon {
+    font-size: 1.25rem;
+    color: #ffffff;
+}
+
+.navbar_container .navbar_buttons {
+    display: flex;
+    align-items: center;
+    gap: .4em;
+}
+
+.navbar_container .favorite_btn {
+    width: 52px;
+    cursor: pointer;
+    height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.navbar_container .favorite_btn .heart {
+    color: #e86364;
+    font-size: 1.4em;
+}
+
+.navbar_container .theme_btn {
+    width: 52px;
+    border: none;
+    height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+.navbar_container .theme_btn .moon {
+    font-size: 1.4em;
+    color: #222222;
+}

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29984519-8ef9-483a-86d8-7c3c21698cfb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/web-advanced/src/javascript.svg" beforeDir="false" afterPath="$PROJECT_DIR$/web-advanced/src/javascript.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-advanced/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/web-advanced/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-advanced/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web-advanced/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-advanced/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web-advanced/src/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,28 +25,28 @@
     &quot;accountId&quot;: &quot;eefdf843-d43a-420f-89ac-8d769668d322&quot;
   }
 }</component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "da3e3eff",
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;da3e3eff&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="3AD2f5VSGwTp0XBzkzDposHxCem" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Amin/Documents/amin_gharbaoui_webAdvanced",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Amin/Documents/amin_gharbaoui_webAdvanced&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -64,7 +64,11 @@
       <updated>1772112921923</updated>
       <workItem from="1772112923340" duration="4536000" />
       <workItem from="1772142900498" duration="186000" />
-      <workItem from="1772527971551" duration="955000" />
+      <workItem from="1772527971551" duration="8054000" />
+      <workItem from="1772626138751" duration="7042000" />
+      <workItem from="1772652944174" duration="599000" />
+      <workItem from="1772713644542" duration="4116000" />
+      <workItem from="1772883401394" duration="5048000" />
     </task>
     <servers />
   </component>
