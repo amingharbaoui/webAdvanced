@@ -241,7 +241,37 @@ html {
 /*Cards*/
 
 .cards_container {
-    margin-top: 3em;
+    margin-top: 11em;
+    padding-inline: 1.5em;
+    padding-inline: 1.5em;
+}
+
+.cards_container_items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: masonry;
+    gap: 20px;
+}
+
+.cards_container_item {
+    background-color: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.cards_container_content {
+    padding: 20px;
+    min-height: 150px;
+}
+
+.cards_container_item.tall .cards_container_content {
+    min-height: 280px;
+}
+
+.cards_container_item.short .cards_container_content {
+    min-height: 80px;
 }
 
 /*Dark mode styles*/

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29984519-8ef9-483a-86d8-7c3c21698cfb" name="Changes" comment="readme usage changed to verdant folder">
+      <change beforePath="$PROJECT_DIR$/verdant/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/verdant/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verdant/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/verdant/src/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +81,8 @@
       <workItem from="1773840958774" duration="1243000" />
       <workItem from="1773842241446" duration="110000" />
       <workItem from="1773842369236" duration="198000" />
-      <workItem from="1773842621700" duration="7668000" />
+      <workItem from="1773842621700" duration="7853000" />
+      <workItem from="1773850795792" duration="2373000" />
     </task>
     <task id="LOCAL-00001" summary="New readme file + added dark mode styles and toggle">
       <option name="closed" value="true" />
