@@ -6,10 +6,10 @@ This repository is all about making a fully responsive website for school with A
 ## Usage/Examples
 
 
-    Clone the project and open the web-advanced folder 
+    Clone the project and go to verdant folder 
 
-    Once the project folder opened, open your 
-    terminal and run: "npm run dev"
+    Once the folder is open, in your 
+    terminal run: "npm run dev"
 
     Enjoy ! 
 
