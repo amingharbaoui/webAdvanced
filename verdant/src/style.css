@@ -1,0 +1,242 @@
+
+/*General*/
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    font-family: General Sans, Sans Serif;
+    min-height: 100vh;
+    background: #F3F4F4;
+}
+
+/*Navbar*/
+
+.navbar_container {
+    display: flex;
+    padding: 1.5em 1.5em 0 1.5em;
+    align-content: center;
+    align-items: center;
+}
+
+.navbar_container_info {
+    display: flex;
+    align-items: center;
+}
+
+.navbar_container .leaf {
+    width: 45px;
+    height: 45px;
+    color: #556B2FFF;
+    transform: rotateZ(90deg);
+}
+
+.navbar_container h2 {
+    font-family: Quicksand, Sans Serif;
+    color: #222222;
+    margin-right: 1em;
+    font-size: 2.2rem;
+}
+
+.navbar_container .search_bar {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.navbar_container .search_bar input {
+    border: 0;
+    font-family: General Sans, Sans Serif;
+    outline: 0;
+    width: 40%;
+    border: 1.3px solid white;
+    background: #ffffff;
+    padding: 1.25em 12.2em 1.25em 1.8em ;
+    border-radius: 85px;
+}
+
+.navbar_container .search_bar input::placeholder {
+    color: #070707;
+    text-transform: capitalize;
+    opacity: .5;
+    font-weight: 500;
+    font-family: General Sans, Sans Serif;
+}
+.navbar_container .search_bar .search_bar_button_container {
+    display: flex;
+    align-items: center;
+    padding: .4em;
+    position: relative;
+}
+
+.navbar_container .search_bar_button_container .input_btn {
+    position: absolute;
+    display: flex;
+    left: -126px;
+    font-family: General Sans, Sans Serif;
+    gap: .85em;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #1B211A;
+    border-radius: 85px;
+    color: #fff;
+    padding: 1.1em 1.8em;
+    text-transform: capitalize;
+}
+
+
+.navbar_container .search_bar_button_container .input_btn:hover {
+    background: #2b352a;
+}
+
+.navbar_container .search_bar_button_container .input_btn .search_icon {
+    font-size: 1.25rem;
+    color: #ffffff;
+}
+
+.navbar_container .navbar_buttons {
+    display: flex;
+    align-items: center;
+    gap: .4em;
+}
+
+.navbar_container .favorite_btn {
+    width: 52px;
+    cursor: pointer;
+    height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.navbar_container .favorite_btn .heart {
+    color: #e86364;
+    font-size: 1.4em;
+}
+
+.navbar_container .theme_btn {
+    width: 52px;
+    border: none;
+    height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+.navbar_container .theme_btn .moon {
+    font-size: 1.4em;
+    color: #222222;
+}
+
+.navbar_container .theme_btn .sunny {
+    font-size: 1.4em;
+    color: #FF8C00FF;
+    display: none;
+}
+
+/*Categories*/
+.categories_container {
+    display: flex;
+    align-items: center;
+}
+
+.categories_title {
+    padding: 1.5em 1em 1.5em 1.5em;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+
+}
+
+.categories_items {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: .5em;
+}
+
+.categories_items::selection {
+    cursor: grabbing;
+}
+
+.categories_items_item {
+    background: #e7e7e7;
+    padding: 1em 3.2em;
+    cursor: pointer;
+    border-radius: 30px;
+    text-transform: capitalize;
+}
+
+.categories_items_item:hover {
+    background-color: #d6d6d6;
+    transition: all .80ms ease-in-out;
+}
+
+.filter_container {
+    width: 52px;
+    border: none;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.filter_container_item {
+    font-size: 1.4rem;
+}
+
+/*Quote*/
+
+
+.quote_container {
+    display: flex;
+    padding-top: 2em;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote_container_item {
+    text-align: center;
+    color: dimgrey;
+}
+
+/*Cards*/
+
+.cards_container {
+    margin-top: 3em;
+}
+
+/*Dark mode styles*/
+.dark_body {
+    background-color: #1B211A;
+    color: #EEEEEE;
+}
+
+.dark_body .navbar_container_info_title {
+    color: #EEEEEE;
+}
+
+.dark_body .quote_container_item {
+    color: #697565;
+}
+
+.dark_body .categories_items_item {
+    background-color: #B1AB86;
+}
