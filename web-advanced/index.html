@@ -2,21 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="./public/leaf-outline.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://api.fontshare.com/v2/css?f[]=technor@200,300,400,500,600,700&f[]=quicksand@500&f[]=general-sans@500&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=technor@200,300,400,500,600,700&f[]=quicksand@500&f[]=general-sans@500&f[]=pilcrow-rounded@400,500,600,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/style.css">
-    <title>web-advanced</title>
+    <title>Planted - Houseplants, styling & care</title>
   </head>
   <body>
 
-<!--  Navbar is here addressed -->
+<!--  Navbar -->
 <navbar class="navbar_container">
-<!--  Navbar titel -->
-  <h2>web <span>adv</span></h2>
+<!--  Navbar icon and title-->
+  <div class="navbar_container_info">
+    <ion-icon name="leaf-outline" class="leaf"></ion-icon>
+    <!--  Navbar titel -->
+    <h2 class="navbar_container_info_title">Planted</h2>
+  </div>
 <!--  Navbar search bar -->
   <div class="search_bar">
-    <input type="text" placeholder="Something.."
+    <input class="input" type="text" placeholder="What do you need ?"
 
     >
     <div class="search_bar_button_container">
@@ -38,14 +42,65 @@
     <!--  Theme switcher button-->
     <button class="theme_btn">
       <i class="fa-solid fa-moon moon"></i>
+      <ion-icon class="sunny" name="sunny-outline"></ion-icon>
     </button>
 
   </div>
 </navbar>
 
+<!--Categories and filter-->
+
+<section class="categories_container">
+  <p class="categories_title">categories</p>
+  <ul class="categories_items">
+    <li class="categories_items_item">
+      test
+    </li>
+    <li class="categories_items_item">
+      test
+    </li>
+    <li class="categories_items_item">
+      test
+    </li>
+    <li class="categories_items_item">
+      test
+    </li>
+    <li class="categories_items_item">
+      test
+    </li>
+
+    <li class="categories_items_item filter_container">
+      <ion-icon name="filter-outline" class="filter_container_item"></ion-icon>
+    </li>
+  </ul>
+</section>
+
+<!--Quote-->
+<section class="quote_container">
+  <q class="quote_container_item">
+    Plants are proof that life can grow from quiet patience and simple light...
+  </q>
+</section>
+
+<!--cards -->
+<div class="cards_container">
+  <div class="cards_container_items">
+
+    <div class="cards_container_item">
+
+    </div>
+    <div class="cards_container_item"></div>
+    <div class="cards_container_item"></div>
+    <div class="cards_container_item"></div>
+    <div class="cards_container_item"></div>
+    
+  </div>
+</div>
+
 <!--Font Awesome Icons / Ion Icons -->
 <script src="https://kit.fontawesome.com/c1b627158e.js" crossorigin="anonymous"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="./src/main.js"></script>
   </body>
 </html>
