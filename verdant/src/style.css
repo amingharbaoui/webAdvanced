@@ -39,7 +39,7 @@ html {
 
 .navbar_container h2 {
     font-family: Quicksand, Sans Serif;
-    color: #222222;
+    color: #2b352a;
     margin-right: 1em;
     font-size: 2.2rem;
 }
@@ -55,7 +55,7 @@ html {
     font-family: General Sans, Sans Serif;
     outline: 0;
     width: 40%;
-    border: 1.3px solid white;
+    border: 1.5px solid #e7e7e7;
     background: #ffffff;
     padding: 1.25em 12.2em 1.25em 1.8em ;
     border-radius: 85px;
@@ -68,6 +68,11 @@ html {
     font-weight: 500;
     font-family: General Sans, Sans Serif;
 }
+
+.navbar_container .search_bar input:focus {
+    border: 1.5px solid #c5c5c5;
+}
+
 .navbar_container .search_bar .search_bar_button_container {
     display: flex;
     align-items: center;
@@ -85,16 +90,15 @@ html {
     border: none;
     outline: none;
     cursor: pointer;
-    background: #1B211A;
+    background: #2b352a;
     border-radius: 85px;
     color: #fff;
     padding: 1.1em 1.8em;
     text-transform: capitalize;
 }
 
-
 .navbar_container .search_bar_button_container .input_btn:hover {
-    background: #2b352a;
+    background-color: rgba(43, 53, 42, 0.96);
 }
 
 .navbar_container .search_bar_button_container .input_btn .search_icon {
@@ -114,7 +118,7 @@ html {
     height: 52px;
     border-radius: 50%;
     background: #ffffff;
-    border: none;
+    border: 1.5px solid #e7e7e7;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,11 +128,27 @@ html {
 .navbar_container .favorite_btn .heart {
     color: #e86364;
     font-size: 1.4em;
+    /*transition: transform .2s ease;*/
 }
+
+/*! Animation when favorite is not empty*/
+
+/*.navbar_container .favorite_btn .heart {*/
+/*    animation: heartbeat 0.8s ease-in-out infinite;*/
+/*}*/
+
+/*@keyframes heartbeat {*/
+/*    0%   { transform: scale(1); }*/
+/*    15%  { transform: scale(1.25); }*/
+/*    30%  { transform: scale(1); }*/
+/*    45%  { transform: scale(1.15); }*/
+/*    60%  { transform: scale(1); }*/
+/*    100% { transform: scale(1); }*/
+/*}*/
 
 .navbar_container .theme_btn {
     width: 52px;
-    border: none;
+    border: 1.5px solid #e7e7e7;
     height: 52px;
     border-radius: 50%;
     background: #ffffff;
@@ -157,6 +177,7 @@ html {
 }
 
 .categories_title {
+    color: #2e3a2e;
     padding: 1.5em 1em 1.5em 1.5em;
     font-size: 1.5rem;
     text-transform: capitalize;
@@ -214,7 +235,7 @@ html {
 
 .quote_container_item {
     text-align: center;
-    color: dimgrey;
+    color: #696969FF;
 }
 
 /*Cards*/
@@ -226,11 +247,30 @@ html {
 /*Dark mode styles*/
 .dark_body {
     background-color: #1B211A;
-    color: #EEEEEE;
+    color: #e8e6d9;
 }
 
 .dark_body .navbar_container_info_title {
-    color: #EEEEEE;
+    color: #e8e6d9;
+}
+
+.dark_body .search_bar input {
+    background: #252a25;
+    border: 1.5px solid #243024;
+    color: #e8e6d9;
+}
+
+.dark_body .search_bar input::placeholder {
+    color: #e8e6d9;
+}
+
+
+.dark_body .search_bar input:focus {
+    border: 1.5px solid #2e3a2e;
+}
+
+.dark_body .search_bar .input_btn:hover {
+    background-color: #243024;
 }
 
 .dark_body .quote_container_item {
@@ -238,5 +278,30 @@ html {
 }
 
 .dark_body .categories_items_item {
-    background-color: #B1AB86;
+    background-color: #252a25;
+    color: #e8e6d9;
+}
+
+
+.dark_body .categories_items_item:hover {
+    background-color: #243024;
+}
+
+.dark_body .favorite_btn {
+    background: #252a25;
+    border: 1.5px solid #3d4a3d;
+}
+
+.dark_body .theme_btn {
+    background: #252a25;
+    border: 1.5px solid #3d4a3d;
+}
+
+.dark_body .theme_btn:hover .sunny {
+    transform: rotate(90deg);
+    transition: transform .5s ease-in-out;
+}
+
+.dark_body .categories_title {
+    color: #e8e6d9;
 }

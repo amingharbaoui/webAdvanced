@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="29984519-8ef9-483a-86d8-7c3c21698cfb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/web-advanced/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web-advanced/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-advanced/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web-advanced/src/style.css" afterDir="false" />
+    <list default="true" id="29984519-8ef9-483a-86d8-7c3c21698cfb" name="Changes" comment="readme usage changed to verdant folder">
+      <change beforePath="$PROJECT_DIR$/verdant/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/verdant/src/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +24,9 @@
     &quot;accountId&quot;: &quot;eefdf843-d43a-420f-89ac-8d769668d322&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;da3e3eff&quot;,
   &quot;associatedIndex&quot;: 4
@@ -50,8 +52,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.32098.37" />
       </set>
     </attachedChunks>
   </component>
@@ -68,11 +70,87 @@
       <workItem from="1772626138751" duration="7042000" />
       <workItem from="1772652944174" duration="599000" />
       <workItem from="1772713644542" duration="4116000" />
-      <workItem from="1772883401394" duration="5048000" />
+      <workItem from="1772883401394" duration="7338000" />
+      <workItem from="1773056921487" duration="3362000" />
+      <workItem from="1773483166204" duration="11639000" />
+      <workItem from="1773666678044" duration="8084000" />
+      <workItem from="1773823621990" duration="28000" />
+      <workItem from="1773823691483" duration="8000" />
+      <workItem from="1773836312198" duration="214000" />
+      <workItem from="1773840958774" duration="1243000" />
+      <workItem from="1773842241446" duration="110000" />
+      <workItem from="1773842369236" duration="198000" />
+      <workItem from="1773842621700" duration="7668000" />
     </task>
+    <task id="LOCAL-00001" summary="New readme file + added dark mode styles and toggle">
+      <option name="closed" value="true" />
+      <created>1773841841492</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1773841841492</updated>
+    </task>
+    <task id="LOCAL-00002" summary="changed website name and description">
+      <option name="closed" value="true" />
+      <created>1773842075670</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773842075670</updated>
+    </task>
+    <task id="LOCAL-00003" summary="changed website name and description">
+      <option name="closed" value="true" />
+      <created>1773842095873</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773842095873</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added emoji to readme file">
+      <option name="closed" value="true" />
+      <created>1773842145393</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773842145393</updated>
+    </task>
+    <task id="LOCAL-00005" summary="title changed to verdant">
+      <option name="closed" value="true" />
+      <created>1773842557740</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1773842557740</updated>
+    </task>
+    <task id="LOCAL-00006" summary="folder name web-advanced  is now the name of the website">
+      <option name="closed" value="true" />
+      <created>1773843012436</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1773843012436</updated>
+    </task>
+    <task id="LOCAL-00007" summary="readme usage changed to verdant folder">
+      <option name="closed" value="true" />
+      <created>1773843313282</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1773843313282</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="New readme file + added dark mode styles and toggle" />
+    <MESSAGE value="changed website name and description" />
+    <MESSAGE value="added emoji to readme file" />
+    <MESSAGE value="title changed to verdant" />
+    <MESSAGE value="folder name web-advanced  is now the name of the website" />
+    <MESSAGE value="readme usage changed to verdant folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme usage changed to verdant folder" />
   </component>
 </project>
