@@ -14,35 +14,39 @@
 <navbar class="navbar_container">
 <!--  Navbar icon and title-->
   <div class="navbar_container_info">
-    <ion-icon name="leaf-outline" class="leaf"></ion-icon>
+    <ion-icon name="leaf-outline" class="navbar_container_info_leaf"></ion-icon>
     <!--  Navbar titel -->
     <h2 class="navbar_container_info_title">Verdant</h2>
   </div>
 <!--  Navbar search bar -->
-  <div class="search_bar">
-    <input class="input" type="text" placeholder="What do you need ?"
+  <div class="navbar_container_searchbar">
+    <input class="navbar_container_searchbar_input" type="text"
+           placeholder="What do you need ?"
 
     >
-    <div class="search_bar_button_container">
-      <button class="input_btn">
+    <div class="navbar_container_searchbar_buttoncontainer">
+      <button class="navbar_container_searchbar_buttoncontainer_button">
         search
-        <ion-icon name="search-outline" class="search_icon"></ion-icon>
+        <ion-icon name="search-outline"
+                  class="navbar_container_searchbar_buttoncontainer_button_icon"></ion-icon>
       </button>
     </div>
 
   </div>
 
-  <div class="navbar_buttons">
-
-    <!--  Favorite button -->
-    <button class="favorite_btn">
-      <i class="fa-solid fa-heart heart"></i>
+  <div class="navbar_container_buttons">
+    <button class="navbar_container_buttons_favorite">
+      <ion-icon name="flower-outline"
+                class="navbar_container_buttons_favorite_flower"></ion-icon>
+<!--  !    <ion-icon class="navbar_container_buttons_favorite_flower"
+name="flower"></ion-icon>-->
     </button>
 
-    <!--  Theme switcher button-->
-    <button class="theme_btn">
-      <i class="fa-solid fa-moon moon"></i>
-      <ion-icon class="sunny" name="sunny-outline"></ion-icon>
+    <button class="navbar_container_buttons_theme">
+      <ion-icon name="moon-outline"
+                class="navbar_container_buttons_theme_moon"></ion-icon>
+      <ion-icon class="navbar_container_buttons_theme_sunny"
+                name="sunny-outline"></ion-icon>
     </button>
 
   </div>
@@ -51,58 +55,63 @@
 <!--Categories and filter-->
 
 <section class="categories_container">
-  <p class="categories_title">categories</p>
-  <ul class="categories_items">
-    <li class="categories_items_item">
+  <p class="categories_container_title">categories</p>
+  <ul class="categories_container_items">
+    <li class="categories_container_items_item">
       test
     </li>
-    <li class="categories_items_item">
+    <li class="categories_container_items_item">
       test
     </li>
-    <li class="categories_items_item">
+    <li class="categories_container_items_item">
       test
     </li>
-    <li class="categories_items_item">
+    <li class="categories_container_items_item">
       test
     </li>
-    <li class="categories_items_item">
+    <li class="categories_container_items_item">
       test
     </li>
 
-    <li class="categories_items_item filter_container">
-      <ion-icon name="filter-outline" class="filter_container_item"></ion-icon>
+    <li class="categories_container_items_item_filter">
+      <ion-icon name="filter-outline"
+                class="categories_container_items_item_filter_icon"></ion-icon>
     </li>
   </ul>
 </section>
 
 <!--Quote-->
 <section class="quote_container">
-  <q class="quote_container_item">
+  <q class="quote_container_text">
     Plants are proof that life can grow from quiet patience and simple light...
   </q>
 </section>
 
 <!--cards -->
-<div class="cards_container">
-  <div class="cards_container_items">
+<div class="card_container">
+  <div class="card_container_items">
 
-    <div class="cards_container_item">
-      <div class="cards_container_content">
-        <div class="card_top">
-          <span  class="card_title"></span>
-          <p></p>
+    <div class="card_container_item">
+      <div class="card_container_item_content">
+        <div class="card_container_item_content_top">
+          <p class="card_container_item_content_top_title">
+            id/
+          </p>
+          <span class="card_container_item_content_top_icon">
+            <ion-icon name="flower-outline"
+                      class="card_container_item_content_top_icon_flower"></ion-icon>
+          </span>
         </div>
-        <div class="card_bottom">
-          <p></p>
+        <div class="card_container_item_content_image">
+<!--!          Plant image-->
+        </div>
+        <div class="card_information_container">
+          <p class="card_information_container_title"></p>
+          <span class="card_information_container_subtitle"></span>
         </div>
       </div>
 
     </div>
-    <div class="cards_container_item"></div>
-    <div class="cards_container_item"></div>
-    <div class="cards_container_item"></div>
-    <div class="cards_container_item"></div>
-    
   </div>
 </div>
 
