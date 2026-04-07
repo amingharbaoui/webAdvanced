@@ -91,24 +91,26 @@ name="flower"></ion-icon>-->
 <div class="card_container">
   <div class="card_container_items" id="card_container_items_gallery">
 
-    <div class="card_container_item">
-      <div class="card_container_item_content_intern">
-        <div class="card_container_item_content_intern_top">
+    <template id="plant_card_template">
+      <div class="card_container_item">
+        <div class="card_container_item_content_intern">
+          <div class="card_container_item_content_intern_top">
           <span class="card_container_item_content_intern_top_icon">
             <ion-icon name="flower-outline"
                       class="card_container_item_content_intern_top_icon_flower"></ion-icon>
           </span>
+          </div>
+          <div class="card_container_item_content_intern_image"></div>
         </div>
-        <div class="card_container_item_content_intern_image"></div>
-      </div>
-      <div class="card_container_items_item_content_extern">
-        <div class="card_container_items_item_content_extern_information">
-          <p class="card_container_items_item_content_extern_information_title"></p>
-          <span class="card_container_items_item_content_extern_information_subtitle"></span>
+        <div class="card_container_items_item_content_extern">
+          <div class="card_container_items_item_content_extern_information">
+            <p class="card_container_items_item_content_extern_information_title"></p>
+            <span class="card_container_items_item_content_extern_information_subtitle"></span>
+          </div>
         </div>
-      </div>
 
-    </div>
+      </div>
+    </template>
   </div>
 </div>
 
