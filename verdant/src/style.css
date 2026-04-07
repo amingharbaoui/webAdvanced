@@ -331,6 +331,11 @@ html {
     display: block;
 }
 
+/*Sentinel scroll*/
+#scroll_sentinel {
+    height: 20px;
+}
+
 /*Dark mode styles*/
 
 .dark_container_body {
