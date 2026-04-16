@@ -380,6 +380,7 @@ html {
 }
 
 .load_button {
+    gap: .4em;
     display: inline-flex;
     align-items: center;
     justify-content: center;
