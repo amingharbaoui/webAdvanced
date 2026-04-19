@@ -52,7 +52,7 @@ html {
 
 .navbar_container_searchbar_input {
     border: 1px solid rgba(43, 53, 42, 0.10);
-    background: #ffffff;
+    background: #F6F6F2;
     width: 40%;
     height: 50px;
     padding: 0 9.8em 0 1.35em;
@@ -166,7 +166,7 @@ html {
     gap: 0.7em;
 }
 
-.categories_container_items_item {
+.categories_container_items_item:not(.categories_container_items_item_filter) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -204,28 +204,65 @@ html {
 }
 
 .categories_container_items_item_filter {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: transparent;
-    border: 1px solid rgba(43, 53, 42, 0.12);
-    color: #445244;
-    display: flex;
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 0;
-    cursor: pointer;
+    justify-content: flex-start;
+    min-width: 124px;
+    width: 124px;
+    height: 46px;
+    padding: 0 1.35em;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: #445244;
+    font-size: 0.96rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: visible;
+    margin-left: auto;
+    z-index: 2;
     transition:
-            background-color 160ms ease,
-            border-color 160ms ease,
-            color 160ms ease,
-            transform 160ms ease;
+            width 420ms cubic-bezier(0.16, 1, 0.3, 1),
+            color 180ms ease;
 }
 
 .categories_container_items_item_filter:hover {
+    width: min(44vw, 900px);
+    background: transparent;
+    color: #445244;
+}
+
+.categories_container_items_item_filter_panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 124px;
+    height: 46px;
+    border-radius: 24px;
+    background: transparent;
+    border: 1px solid rgba(43, 53, 42, 0.12);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    pointer-events: none;
+    z-index: -1;
+    transition:
+            width 420ms cubic-bezier(0.16, 1, 0.3, 1),
+            height 420ms cubic-bezier(0.16, 1, 0.3, 1),
+            background-color 180ms ease,
+            border-color 180ms ease;
+}
+
+.categories_container_items_item_filter:hover .categories_container_items_item_filter_panel {
+    width: min(44vw, 900px);
+    height: 124px;
     background: rgba(43, 53, 42, 0.035);
     border-color: rgba(43, 53, 42, 0.22);
-    color: #2f3a2f;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
 }
 
 .categories_container_items_item_filter_icon {
@@ -236,7 +273,8 @@ html {
 
 .quote_container {
     display: flex;
-    padding: 3.5em 5em;
+    padding: 2em;
+    padding-bottom: 6em;
     align-items: center;
     justify-content: center;
 }
@@ -478,18 +516,38 @@ html {
     color: #e8e6d9;
 }
 
-.dark_container_body .categories_container_items_item,
-.dark_container_body .categories_container_items_item_filter {
+.dark_container_body .categories_container_items_item {
     background: transparent;
     border: 1px solid rgba(232, 230, 217, 0.12);
     color: #bcc4b7;
 }
 
-.dark_container_body .categories_container_items_item:hover,
-.dark_container_body .categories_container_items_item_filter:hover {
+.dark_container_body .categories_container_items_item:hover {
     background: rgba(232, 230, 217, 0.04);
     border-color: rgba(232, 230, 217, 0.22);
     color: #edf1e8;
+}
+
+.dark_container_body .categories_container_items_item_filter {
+    background: transparent;
+    border: none;
+    color: #bcc4b7;
+}
+
+.dark_container_body .categories_container_items_item_filter:hover {
+    background: transparent;
+    border-color: transparent;
+    color: #edf1e8;
+}
+
+.dark_container_body .categories_container_items_item_filter_panel {
+    background: transparent;
+    border: 1px solid rgba(232, 230, 217, 0.12);
+}
+
+.dark_container_body .categories_container_items_item_filter:hover .categories_container_items_item_filter_panel {
+    background: rgba(232, 230, 217, 0.04);
+    border-color: rgba(232, 230, 217, 0.22);
 }
 
 .dark_container_body .categories_container_items_item.active {

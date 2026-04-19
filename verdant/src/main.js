@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let categoryButtons = document.querySelectorAll(".categories_container_items_item");
     const gallery = document.querySelector("#card_container_items_gallery");
     const template = document.querySelector("#plant_card_template");
+    let input = document.querySelector(".navbar_container_searchbar_input");
+    let inputButton = document.querySelector(".navbar_container_searchbar_buttoncontainer_button");
 
     let currentPage= 1;
     let lastPage = null;
@@ -24,20 +26,33 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-// Dark mode toggle
+// Dark mode
 
-    const isDark = localStorage.getItem("darkMode") === "true";
-    body.classList.toggle("dark_container_body", isDark);
+    const THEME_KEY = "theme";
 
-    sunIcon.style.display = isDark ? "block" : "none";
-    moonIcon.style.display = isDark ? "none" : "block";
+    function applyTheme(theme) {
+        body.classList.toggle("dark_container_body", theme === "dark");
+        sunIcon.style.display = theme === "dark" ? "block" : "none";
+        moonIcon.style.display = theme === "dark" ? "none" : "block";
+    }
 
+    function getPreferredTheme() {
+        const savedTheme = localStorage.getItem(THEME_KEY);
+
+        if(savedTheme === "dark" || savedTheme === "light") {
+            return savedTheme;
+        }
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+
+    let currentTheme = getPreferredTheme();
+    applyTheme(currentTheme);
 
     function toggleDarkMode() {
-        const isDark = body.classList.toggle("dark_container_body");
-        sunIcon.style.display = isDark ? "block" : "none";
-        moonIcon.style.display = isDark ? "none" : "block";
-        localStorage.setItem("darkMode", isDark);
+        currentTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(currentTheme);
+        localStorage.setItem(THEME_KEY, currentTheme);
     }
 
     themeButton.addEventListener("click", toggleDarkMode);
@@ -89,6 +104,64 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    async function searchPlantsByName() {
+        const searchValue = input.value.trim();
+
+        if(!searchValue) {
+            currentPage = 1;
+            lastPage = null;
+            loadPlants(1, true);
+            return;
+        }
+
+        if(isLoading) {
+            return;
+        }
+
+        isLoading = true;
+
+        try {
+            loadButton.disabled = true;
+            gallery.innerHTML = "";
+
+            const data = await getPlantsList(1, {
+                ...filtersMap[currentFilter],
+                q: searchValue
+            });
+
+            lastPage = data.last_page;
+            currentPage = 1;
+
+            data.data.filter((plant) => plant.default_image?.original_url).forEach((plant) => {
+                const clone = template.content.cloneNode(true);
+                const imageBox = clone.querySelector(".card_container_item_content_intern_image");
+                const title = clone.querySelector(".card_container_items_item_content_extern_information_title");
+                const subtitle = clone.querySelector(".card_container_items_item_content_extern_information_subtitle");
+
+
+                imageBox.innerHTML = `<img class="card_container_item_content_intern_image_img" src="${plant.default_image?.original_url}" alt="${plant.common_name}">`;
+
+                title.textContent = plant.common_name;
+                subtitle.textContent = plant.scientific_name?.[0];
+                gallery.appendChild(clone);
+            });
+
+            if(lastPage  && currentPage >= lastPage) {
+                loadButton.disabled = true;
+            }else {
+                loadButton.disabled = false;
+            }
+
+        }catch (error) {
+            console.error("Error: " + error);
+            loadButton.disabled = false;
+        }finally {
+            isLoading = false;
+        }
+
+        input.value = "";
+    }
+
     categoryButtons.forEach((button) => {
         button.addEventListener("click", () => {
             categoryButtons.forEach((btn) => {
@@ -104,6 +177,14 @@ document.addEventListener("DOMContentLoaded", () => {
             loadPlants(1, true);
         });
     });
+
+    inputButton.addEventListener("click", searchPlantsByName);
+
+    input.addEventListener("keydown", (event) => {
+        if(event.key === "Enter") {
+            searchPlantsByName();
+        }
+    })
 
     loadButton.addEventListener("click",  () => {
         if(!lastPage || currentPage < lastPage) {
