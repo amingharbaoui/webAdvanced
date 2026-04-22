@@ -2,6 +2,8 @@ import {getPlantsList} from "./api/perenual.js";
 document.addEventListener("DOMContentLoaded", () => {
 
     let body = document.body;
+    let favoriteButton = document.querySelector(".navbar_container_buttons_favorite");
+    let favorites = [];
     let themeButton = document.querySelector(".navbar_container_buttons_theme");
     let loadButton = document.querySelector(".load_button");
     let moonIcon = document.querySelector(".navbar_container_buttons_theme_moon");
@@ -11,6 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const template = document.querySelector("#plant_card_template");
     let input = document.querySelector(".navbar_container_searchbar_input");
     let inputButton = document.querySelector(".navbar_container_searchbar_buttoncontainer_button");
+    const filterButton = document.querySelector(".categories_container_items_item_filter");
+    let panelFilterButtons = document.querySelectorAll(".categories_container_items_item_filter_panel_buttons_list_element");
+
+    if(filterButton) {
+        filterButton.addEventListener("mouseenter", () => {
+            filterButton.classList.add("is_open");
+        })
+
+        filterButton.addEventListener("mouseleave", () => {
+            filterButton.classList.remove("is_open");
+        })
+    }
 
     let currentPage= 1;
     let lastPage = null;
@@ -22,7 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
         indoor: { indoor: 1 },
         outdoor: { indoor:0 },
         edible: {edible: 1},
-        poisonous: {poisonous: 1}
+        poisonous: {poisonous: 1},
+        hardiness: {hardiness: "7"},
+        sunlight: {sunlight: "full sun"},
+        watering: {watering: "Frequent"}
     };
 
 
@@ -162,19 +179,34 @@ document.addEventListener("DOMContentLoaded", () => {
         input.value = "";
     }
 
+    function handleFilterClick(button) {
+
+        categoryButtons.forEach((btn) => {
+            btn.classList.remove("active");
+        });
+
+        panelFilterButtons.forEach((btn) => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        currentFilter = button.dataset.filter;
+        currentPage = 1;
+        lastPage = null;
+        loadPlants(1, true);
+    }
+
     categoryButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            categoryButtons.forEach((btn) => {
-                btn.classList.remove("active");
-            });
+            handleFilterClick(button);
+        });
+    });
 
-            button.classList.add("active");
-
-            currentFilter = button.dataset.filter;
-            currentPage = 1;
-            lastPage = null;
-
-            loadPlants(1, true);
+    panelFilterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            handleFilterClick(button);
+            filterButton.classList.remove("is_open");
         });
     });
 
@@ -191,6 +223,10 @@ document.addEventListener("DOMContentLoaded", () => {
             loadPlants(currentPage + 1);
         }
     });
+
+    favoriteButton.addEventListener("click", () => {
+
+    })
 
 
     loadPlants(1, true);
