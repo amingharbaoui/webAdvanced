@@ -344,7 +344,7 @@ html {
 .quote_container {
     display: flex;
     padding-bottom: 3em;
-    padding-top: 5em;
+    padding-top: 3em;
     align-items: center;
     justify-content: center;
 }
@@ -352,6 +352,62 @@ html {
 .quote_container_text {
     text-align: center;
     color: #696969FF;
+}
+
+/*Favorites title*/
+.favorites_container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3em 1.5em 3em;
+    display: grid;
+    grid-template-columns: 220px minmax(420px, 1fr) 280px;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3rem;
+}
+
+.favorite_container_eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #88ad67;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.favorite_container_eyebrow::before {
+    content: "";
+    width: 34px;
+    height: 1px;
+    background: rgba(136, 173, 103, 0.5);
+    display: inline-block;
+}
+
+.favorite_container_title {
+    justify-self: center;
+    text-align: center;
+    font-family: Quicksand, Sans Serif;
+    font-size: clamp(3rem, 6vw, 5.6rem);
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+    color: #2b352a;
+    margin: 0;
+    max-width: 9.5ch;
+}
+
+.favorite_container_text {
+    justify-self: end;
+    max-width: 280px;
+    color: #6f756d;
+    font-family: General Sans, Sans Serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+    margin: 0;
 }
 
 /*Cards*/
@@ -689,4 +745,14 @@ html {
 .dark_container_body .load_button:focus-visible {
     outline: 2px solid rgba(168, 183, 121, 0.28);
     outline-offset: 4px;
+}
+
+.navbar_container_buttons_favorite ion-icon,
+.card_container_item_content_intern_top_icon ion-icon {
+    color: #222222;
+}
+
+.dark_container_body .navbar_container_buttons_favorite ion-icon,
+.dark_container_body .card_container_item_content_intern_top_icon ion-icon {
+    color: #e8e6d9;
 }

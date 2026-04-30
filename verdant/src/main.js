@@ -1,32 +1,29 @@
-import {getPlantsList} from "./api/perenual.js";
-document.addEventListener("DOMContentLoaded", () => {
+import { getPlantsList } from "./api/perenual.js";
 
-    let body = document.body;
-    let favoriteButton = document.querySelector(".navbar_container_buttons_favorite");
-    let favorites = [];
-    let themeButton = document.querySelector(".navbar_container_buttons_theme");
-    let loadButton = document.querySelector(".load_button");
-    let moonIcon = document.querySelector(".navbar_container_buttons_theme_moon");
-    let sunIcon = document.querySelector(".navbar_container_buttons_theme_sunny");
-    let categoryButtons = document.querySelectorAll(".categories_container_items_item");
+document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+    const favoritesContainer = document.querySelector(".favorites_container");
+    const navbarFavoriteButton = document.querySelector(".navbar_container_buttons_favorite");
+    const themeButton = document.querySelector(".navbar_container_buttons_theme");
+    const loadButton = document.querySelector(".load_button");
+    const quoteContainer = document.querySelector(".quote_container");
+    const moonIcon = document.querySelector(".navbar_container_buttons_theme_moon");
+    const sunIcon = document.querySelector(".navbar_container_buttons_theme_sunny");
+    const categoryButtons = document.querySelectorAll(".categories_container_items_item");
     const gallery = document.querySelector("#card_container_items_gallery");
     const template = document.querySelector("#plant_card_template");
-    let input = document.querySelector(".navbar_container_searchbar_input");
-    let inputButton = document.querySelector(".navbar_container_searchbar_buttoncontainer_button");
+    const input = document.querySelector(".navbar_container_searchbar_input");
+    const inputButton = document.querySelector(".navbar_container_searchbar_buttoncontainer_button");
     const filterButton = document.querySelector(".categories_container_items_item_filter");
-    let panelFilterButtons = document.querySelectorAll(".categories_container_items_item_filter_panel_buttons_list_element");
+    const panelFilterButtons = document.querySelectorAll(
+        ".categories_container_items_item_filter_panel_buttons_list_element"
+    );
 
-    if(filterButton) {
-        filterButton.addEventListener("mouseenter", () => {
-            filterButton.classList.add("is_open");
-        })
+    const THEME_KEY = "theme";
 
-        filterButton.addEventListener("mouseleave", () => {
-            filterButton.classList.remove("is_open");
-        })
-    }
-
-    let currentPage= 1;
+    let favorites = [];
+    let isFavoritesView = false;
+    let currentPage = 1;
     let lastPage = null;
     let currentFilter = "all";
     let isLoading = false;
@@ -34,18 +31,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const filtersMap = {
         all: {},
         indoor: { indoor: 1 },
-        outdoor: { indoor:0 },
-        edible: {edible: 1},
-        poisonous: {poisonous: 1},
-        hardiness: {hardiness: "7"},
-        sunlight: {sunlight: "full sun"},
-        watering: {watering: "Frequent"}
+        outdoor: { indoor: 0 },
+        edible: { edible: 1 },
+        poisonous: { poisonous: 1 },
+        hardiness: { hardiness: "7" },
+        sunlight: { sunlight: "full sun" },
+        watering: { watering: "Frequent" }
     };
 
+    function hideHomeExtras() {
+        quoteContainer.style.display = "none";
+        loadButton.style.display = "none";
+    }
 
-// Dark mode
+    function showHomeExtras() {
+        quoteContainer.style.display = "flex";
+        loadButton.style.display = "inline-flex";
+    }
 
-    const THEME_KEY = "theme";
+    function updateHomeExtrasVisibility() {
+        const hasCards = gallery.querySelectorAll(".card_container_item").length > 0;
+
+        if (hasCards && !isFavoritesView) {
+            showHomeExtras();
+        } else {
+            hideHomeExtras();
+        }
+    }
+
+    function updateNavbarFavoriteIcon() {
+        if (favorites.length > 0) {
+            navbarFavoriteButton.innerHTML = `<ion-icon class="card_container_item_content_intern_top_icon_sparkles" name="sparkles"></ion-icon>`;
+        } else {
+            navbarFavoriteButton.innerHTML = `<ion-icon class="card_container_item_content_intern_top_icon_sparkles" name="sparkles-outline"></ion-icon>`;
+        }
+    }
 
     function applyTheme(theme) {
         body.classList.toggle("dark_container_body", theme === "dark");
@@ -56,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function getPreferredTheme() {
         const savedTheme = localStorage.getItem(THEME_KEY);
 
-        if(savedTheme === "dark" || savedTheme === "light") {
+        if (savedTheme === "dark" || savedTheme === "light") {
             return savedTheme;
         }
 
@@ -72,51 +92,133 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem(THEME_KEY, currentTheme);
     }
 
-    themeButton.addEventListener("click", toggleDarkMode);
+    function isPlantFavorite(plantId) {
+        return favorites.some((fav) => fav.id === plantId);
+    }
 
+    function toggleFavorite(plant) {
+        const alreadyFavorite = isPlantFavorite(plant.id);
 
-    // Load plants Function
+        if (alreadyFavorite) {
+            favorites = favorites.filter((fav) => fav.id !== plant.id);
+        } else {
+            favorites.push(plant);
+        }
+
+        updateNavbarFavoriteIcon();
+
+        if (isFavoritesView) {
+            renderFavoritesView();
+        }
+    }
+
+    function buildPlantCard(plant) {
+        const clone = template.content.cloneNode(true);
+        const card = clone.querySelector(".card_container_item");
+        const imageBox = clone.querySelector(".card_container_item_content_intern_image");
+        const title = clone.querySelector(".card_container_items_item_content_extern_information_title");
+        const subtitle = clone.querySelector(".card_container_items_item_content_extern_information_subtitle");
+        const cardFavoriteButton = clone.querySelector(".card_container_item_content_intern_top_icon");
+
+        if (card) {
+            card.dataset.id = plant.id;
+        }
+
+        imageBox.innerHTML = `
+      <img
+        src="${plant.default_image?.original_url}"
+        alt="${plant.common_name || "Plant"}"
+        class="card_container_item_content_intern_image_img"
+      >
+    `;
+
+        title.textContent = plant.common_name || "Unknown plant";
+        subtitle.textContent = plant.scientific_name?.[0] || "No scientific name";
+
+        cardFavoriteButton.innerHTML = isPlantFavorite(plant.id)
+            ? `<ion-icon name="sparkles"></ion-icon>`
+            : `<ion-icon class="card_container_item_content_intern_top_icon_sparkles" name="sparkles-outline"></ion-icon>`;
+
+        cardFavoriteButton.addEventListener("click", () => {
+            toggleFavorite(plant);
+
+            if (!isFavoritesView) {
+                cardFavoriteButton.innerHTML = isPlantFavorite(plant.id)
+                    ? `<ion-icon name="sparkles"></ion-icon>`
+                    : `<ion-icon class="card_container_item_content_intern_top_icon_sparkles" name="sparkles-outline"></ion-icon>`;
+            }
+        });
+
+        return clone;
+    }
+
+    function renderFavoritesView() {
+        isFavoritesView = true;
+        hideHomeExtras();
+        loadButton.disabled = true;
+
+        favoritesContainer.innerHTML = `
+      <span class="favorite_container_eyebrow">Curated collection</span>
+      <h2 class="favorite_container_title">My Favorite Plants</h2>
+      <p class="favorite_container_text">
+        ${
+            favorites.length > 0
+                ? "A quiet selection of the plants you saved along the way."
+                : "No favorites yet. Start saving plants and build your own collection."
+        }
+      </p>
+    `;
+
+        gallery.innerHTML = "";
+
+        favorites.forEach((plant) => {
+            const clone = buildPlantCard(plant);
+            gallery.appendChild(clone);
+        });
+    }
+
+    function resetToNormalView() {
+        isFavoritesView = false;
+        favoritesContainer.innerHTML = "";
+    }
+
     async function loadPlants(page = 1, reset = false) {
-        if(isLoading) {
+        if (isLoading) {
             return;
         }
+
         isLoading = true;
 
         try {
             loadButton.disabled = true;
-            const data = await getPlantsList(page, filtersMap[currentFilter]);
-            lastPage = data.last_page;
 
-            if(reset) {
+            if (reset) {
+                resetToNormalView();
                 gallery.innerHTML = "";
             }
 
-            data.data.filter((plant) => plant.default_image?.original_url).forEach((plant) => {
-                const clone = template.content.cloneNode(true);
-                const imageBox = clone.querySelector(".card_container_item_content_intern_image");
-                const title = clone.querySelector(".card_container_items_item_content_extern_information_title");
-                const subtitle = clone.querySelector(".card_container_items_item_content_extern_information_subtitle");
+            const data = await getPlantsList(page, filtersMap[currentFilter]);
+            lastPage = data.last_page;
 
-                imageBox.innerHTML = `<img class="card_container_item_content_intern_image_img" src="${plant.default_image?.original_url || ""}" alt="${plant.common_name}"> `;
-
-                title.textContent = plant.common_name;
-                subtitle.textContent = plant.scientific_name?.[0];
-
-                gallery.appendChild(clone);
-            });
+            data.data
+                .filter((plant) => plant.default_image?.original_url)
+                .forEach((plant) => {
+                    const clone = buildPlantCard(plant);
+                    gallery.appendChild(clone);
+                });
 
             currentPage = page;
+            updateHomeExtrasVisibility();
 
-            if(lastPage && currentPage >= lastPage) {
+            if (lastPage && currentPage >= lastPage) {
                 loadButton.disabled = true;
-            }else {
+            } else {
                 loadButton.disabled = false;
             }
-
-        }catch (error) {
+        } catch (error) {
             console.error("Error: " + error);
             loadButton.disabled = false;
-        }finally {
+        } finally {
             isLoading = false;
         }
     }
@@ -124,14 +226,14 @@ document.addEventListener("DOMContentLoaded", () => {
     async function searchPlantsByName() {
         const searchValue = input.value.trim();
 
-        if(!searchValue) {
+        if (!searchValue) {
             currentPage = 1;
             lastPage = null;
             loadPlants(1, true);
             return;
         }
 
-        if(isLoading) {
+        if (isLoading) {
             return;
         }
 
@@ -139,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             loadButton.disabled = true;
+            resetToNormalView();
             gallery.innerHTML = "";
 
             const data = await getPlantsList(1, {
@@ -149,30 +252,24 @@ document.addEventListener("DOMContentLoaded", () => {
             lastPage = data.last_page;
             currentPage = 1;
 
-            data.data.filter((plant) => plant.default_image?.original_url).forEach((plant) => {
-                const clone = template.content.cloneNode(true);
-                const imageBox = clone.querySelector(".card_container_item_content_intern_image");
-                const title = clone.querySelector(".card_container_items_item_content_extern_information_title");
-                const subtitle = clone.querySelector(".card_container_items_item_content_extern_information_subtitle");
+            data.data
+                .filter((plant) => plant.default_image?.original_url)
+                .forEach((plant) => {
+                    const clone = buildPlantCard(plant);
+                    gallery.appendChild(clone);
+                });
 
+            updateHomeExtrasVisibility();
 
-                imageBox.innerHTML = `<img class="card_container_item_content_intern_image_img" src="${plant.default_image?.original_url}" alt="${plant.common_name}">`;
-
-                title.textContent = plant.common_name;
-                subtitle.textContent = plant.scientific_name?.[0];
-                gallery.appendChild(clone);
-            });
-
-            if(lastPage  && currentPage >= lastPage) {
+            if (lastPage && currentPage >= lastPage) {
                 loadButton.disabled = true;
-            }else {
+            } else {
                 loadButton.disabled = false;
             }
-
-        }catch (error) {
+        } catch (error) {
             console.error("Error: " + error);
             loadButton.disabled = false;
-        }finally {
+        } finally {
             isLoading = false;
         }
 
@@ -180,7 +277,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function handleFilterClick(button) {
-
         categoryButtons.forEach((btn) => {
             btn.classList.remove("active");
         });
@@ -190,12 +286,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         button.classList.add("active");
-
         currentFilter = button.dataset.filter;
         currentPage = 1;
         lastPage = null;
+
         loadPlants(1, true);
     }
+
+    if (filterButton) {
+        filterButton.addEventListener("mouseenter", () => {
+            filterButton.classList.add("is_open");
+        });
+
+        filterButton.addEventListener("mouseleave", () => {
+            filterButton.classList.remove("is_open");
+        });
+    }
+
+    themeButton.addEventListener("click", toggleDarkMode);
 
     categoryButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -206,28 +314,37 @@ document.addEventListener("DOMContentLoaded", () => {
     panelFilterButtons.forEach((button) => {
         button.addEventListener("click", () => {
             handleFilterClick(button);
-            filterButton.classList.remove("is_open");
+            if (filterButton) {
+                filterButton.classList.remove("is_open");
+            }
         });
     });
 
     inputButton.addEventListener("click", searchPlantsByName);
 
     input.addEventListener("keydown", (event) => {
-        if(event.key === "Enter") {
+        if (event.key === "Enter") {
             searchPlantsByName();
         }
-    })
+    });
 
-    loadButton.addEventListener("click",  () => {
-        if(!lastPage || currentPage < lastPage) {
+    loadButton.addEventListener("click", () => {
+        if (!lastPage || currentPage < lastPage) {
             loadPlants(currentPage + 1);
         }
     });
 
-    favoriteButton.addEventListener("click", () => {
+    navbarFavoriteButton.addEventListener("click", () => {
+        if (isFavoritesView) {
+            currentPage = 1;
+            lastPage = null;
+            loadPlants(1, true);
+            return;
+        }
 
-    })
+        renderFavoritesView();
+    });
 
-
+    updateNavbarFavoriteIcon();
     loadPlants(1, true);
 });
