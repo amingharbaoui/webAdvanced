@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const panelFilterButtons = document.querySelectorAll(
         ".categories_container_items_item_filter_panel_buttons_list_element"
     );
+    const modalContainer = document.querySelector(".modal_container");
 
     const THEME_KEY = "theme";
 
@@ -38,6 +39,80 @@ document.addEventListener("DOMContentLoaded", () => {
         sunlight: { sunlight: "full sun" },
         watering: { watering: "Frequent" }
     };
+    async function openModal(plant) {
+        try {
+            const API_KEY = "sk-PTgQ69e5201a36de015454";
+            const res = await fetch(`https://perenual.com/api/v2/species/details/${plant.id}?key=${API_KEY}`);
+            const details = await res.json();
+
+            const image = details.default_image?.original_url || plant.default_image?.original_url || '';
+            const commonName = details.common_name || plant.common_name || 'Unknown plant';
+            const scientificName = Array.isArray(details.scientific_name) ? details.scientific_name[0] : 'N/A';
+            const family = details.family || plant.family || 'N/A';
+            const origin = Array.isArray(details.origin) ? details.origin.join(', ') : 'N/A';
+            const type = details.type || plant.type || 'N/A';
+            const cycle = details.cycle || plant.cycle || 'N/A';
+            const watering = details.watering || plant.watering || 'N/A';
+            const sunlight = Array.isArray(details.sunlight) ? details.sunlight.join(', ') : 'N/A';
+            const hardiness = details.hardiness
+                ? `${details.hardiness.min || 'N/A'} - ${details.hardiness.max || 'N/A'}°C`
+                : 'N/A';
+            const wateringBenchmark = details.watering_general_benchmark
+                ? `${details.watering_general_benchmark.value || 'N/A'} ${details.watering_general_benchmark.unit || ''}`
+                : 'N/A';
+            const description = details.description || 'No description available.';
+
+            const badges = [
+                type ? `Type: ${details.type}` : null,
+                cycle ? `Cycle: ${details.cycle}` : null,
+                sunlight ? `Sunlight: ${sunlight.split(',')[0] || 'Sun'}` : null,
+                details.leaf ? `Has leaf: ${details.leaf}` : null,
+                details.flowering_season ? `Season: ${details.flowering_season}` : null,
+                details.growth_rate ? `Growth: ${details.growth_rate}` : null,
+            ].filter(Boolean);
+
+            modalContainer.innerHTML = `
+      <div class="modal_container_content">
+        <div class="modal_container_content_image">
+          ${image ? `<img src="${image}" alt="${commonName}">` : ''}
+        </div>
+
+        <div class="modal_container_content_info">
+          <p class="modal_container_content_info_name">${commonName}</p>
+          <h2 class="modal_container_content_info_title">${scientificName}</h2>
+          <p class="modal_container_content_info_category">${family}</p>
+
+          <div class="modal_container_content_badges">
+            ${badges.map(badge => `<span class="modal_container_content_badge">${badge}</span>`).join('')}
+          </div>
+
+          <p class="modal_container_content_info_description">${description}</p>
+
+          <div class="modal_container_content_details">
+            <div class="modal_container_content_detail">
+              <span class="modal_container_content_detail_label">Origin</span>
+              <span class="modal_container_content_detail_value">${origin}</span>
+            </div>
+            <div class="modal_container_content_detail">
+              <span class="modal_container_content_detail_label">Watering benchmark</span>
+              <span class="modal_container_content_detail_value">${wateringBenchmark}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+            modalContainer.classList.add('open');
+            modalContainer.querySelector('.modal_container_content_close').addEventListener('click', closeModal);
+        } catch (error) {
+            console.error('openModal error:', error);
+        }
+    }
+
+    function closeModal() {
+        modalContainer.classList.remove("open");
+        modalContainer.innerHTML = "";
+    }
 
     function hideHomeExtras() {
         quoteContainer.style.display = "none";
@@ -148,6 +223,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     : `<ion-icon class="card_container_item_content_intern_top_icon_sparkles" name="sparkles-outline"></ion-icon>`;
             }
         });
+        card.addEventListener('click', (event) => {
+            if (event.target.closest('.card_container_item_content_intern_top_icon')) return;
+            openModal(plant);
+        });
 
         return clone;
     }
@@ -158,16 +237,15 @@ document.addEventListener("DOMContentLoaded", () => {
         loadButton.disabled = true;
 
         favoritesContainer.innerHTML = `
-      <span class="favorite_container_eyebrow">Curated collection</span>
-      <h2 class="favorite_container_title">My Favorite Plants</h2>
-      <p class="favorite_container_text">
+          <span class="favorite_container_eyebrow">Curated collection</span>
+          <h2 class="favorite_container_title">My Favorite Plants</h2>
+          <p class="favorite_container_text">
         ${
             favorites.length > 0
                 ? "A quiet selection of the plants you saved along the way."
                 : "No favorites yet. Start saving plants and build your own collection."
         }
-      </p>
-    `;
+      </p>`;
 
         gallery.innerHTML = "";
 
@@ -343,6 +421,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         renderFavoritesView();
+    });
+
+    modalContainer.addEventListener('click', (e) => {
+        if (e.target === modalContainer) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
     });
 
     updateNavbarFavoriteIcon();
