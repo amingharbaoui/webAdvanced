@@ -614,6 +614,31 @@ html {
     overflow-y: auto;
 }
 
+.modal_container_content::after {
+    content: "Press 'Escape' or click outside the modal to return.";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateY(5px);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #2b352a;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal_container_content:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .modal_container_content_image {
     height: 280px;
     position: relative;
@@ -931,3 +956,8 @@ html {
     color: #bcc4b7;
 }
 
+.dark_container_body .card_container_item::after {
+    background: rgba(37, 42, 37, 0.6);
+    color: #e8e6d9;
+    border: 1px solid rgba(232, 230, 217, 0.1);
+}
