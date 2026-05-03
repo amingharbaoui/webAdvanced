@@ -214,7 +214,8 @@ document.addEventListener("DOMContentLoaded", () => {
             ? `<ion-icon name="sparkles"></ion-icon>`
             : `<ion-icon class="card_container_item_content_intern_top_icon_sparkles" name="sparkles-outline"></ion-icon>`;
 
-        cardFavoriteButton.addEventListener("click", () => {
+        cardFavoriteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
             toggleFavorite(plant);
 
             if (!isFavoritesView) {
