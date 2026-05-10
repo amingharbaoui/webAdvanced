@@ -52,6 +52,37 @@ This repository is all about making a fully responsive website for school with A
 | Styling & layout | User-friendly elements | The interface includes icon buttons, filters, favorites, modal, and a load more button. | `index.html` lines 37-48, 74-88, 106-136; `style.css` lines 33-57, 66-112, 171-258 |
 
 
+
+
+## Installation
+
+Clone the project or download the latest release
+
+```bash
+  git clone https://github.com/amingharbaoui/webAdvanced
+```
+
+Go to the project directory
+
+```bash
+  cd verdant
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+
+
+
 ## Acknowledgements
 
 - [readme.so](https://readme.so)
