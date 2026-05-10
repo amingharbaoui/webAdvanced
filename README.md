@@ -28,9 +28,10 @@ This repository is all about making a fully responsive website for school with A
 
 ## Acknowledgements
 
-- [readme.so](readme.so)
-- [perplexity.ai](perplexity.ai)
-- [perenual](perenual.com)
+- [readme.so](https://readme.so)
+- [perplexity.ai](https://perplexity.ai)
+- [perenual](https://perenual.com)
+- [snipboard.io](https://snipboard.io/)
 
 
 
