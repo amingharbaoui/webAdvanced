@@ -453,7 +453,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    inputButton.addEventListener("click", searchPlantsByName);
+    inputButton.addEventListener("click", () => {
+        if(!input.checkValidity()) {
+            input.reportValidity();
+            return;
+        }
+        searchPlantsByName();
+    });
 
     input.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
