@@ -32,6 +32,9 @@ This repository is all about making a fully responsive website for school with A
 - [perplexity.ai](https://perplexity.ai)
 - [perenual](https://perenual.com)
 - [snipboard.io](https://snipboard.io/)
+- [fontawesome](https://fontawesome.com/)
+- [ion-icons](https://ionic.io/ionicons)
+- [fontshare](https://www.fontshare.com/)
 
 
 
