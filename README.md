@@ -80,7 +80,21 @@ Start the server
   npm run dev
 ```
 
+## Release
 
+The release ZIP contains the production build of the project (`dist`).
+
+To run it locally after downloading the ZIP file:
+
+1. Extract the ZIP file.
+2. Open a terminal inside the extracted folder.
+3. Run the following command:
+```bash
+npx serve dist
+```
+4. Open the local URL shown in the terminal.
+
+This will serve the `dist` folder correctly as a static website.
 
 
 ## Acknowledgements
