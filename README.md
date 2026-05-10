@@ -20,6 +20,7 @@ This repository is all about making a fully responsive website for school with A
 
 - [readme.so](readme.so)
 - [perplexity.ai](perplexity.ai)
+- [perenual](perenual.com)
 
 
 
