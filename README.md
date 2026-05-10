@@ -16,6 +16,16 @@ This repository is all about making a fully responsive website for school with A
     - Responsive design for mobile and desktop
 
 
+
+## Screenshots
+
+![App Screenshot](https://snipboard.io/DIQvMs.jpg)
+![Modal Screenshot](https://snipboard.io/hGzNVZ.jpg)
+![Favorites Screenshot](https://snipboard.io/9jkTM7.jpg)
+![Dark Mode Screenshot](https://snipboard.io/3rd9Ty.jpg)
+
+
+
 ## Acknowledgements
 
 - [readme.so](readme.so)
