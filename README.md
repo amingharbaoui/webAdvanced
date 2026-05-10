@@ -92,6 +92,10 @@ To run it locally after downloading the ZIP file:
 ```bash
 npx serve dist
 ```
+OR
+```bash
+npx.cmd serve dist
+```
 4. Open the local URL shown in the terminal.
 
 This will serve the `dist` folder correctly as a static website.
