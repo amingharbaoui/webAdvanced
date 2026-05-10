@@ -13,7 +13,7 @@ This repository is all about making a fully responsive website for school with A
     - Favorites system
     - Light / dark mode toggle
     - Pagination with “load more” button
-    - Responsive design for mobile and desktop
+    - Responsive design for mobile, tablet and desktop
 
 
 
