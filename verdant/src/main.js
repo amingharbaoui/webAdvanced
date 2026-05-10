@@ -1,4 +1,4 @@
-import { getPlantsList } from "./api/perenual.js";
+import { getPlantsList, getPlantDetails } from "./api/perenual.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
@@ -21,8 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalContainer = document.querySelector(".modal_container");
 
     const THEME_KEY = "theme";
+    const FAVORITES_KEY = "favorites";
 
-    let favorites = [];
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     let isFavoritesView = false;
     let currentPage = 1;
     let lastPage = null;
@@ -39,73 +40,120 @@ document.addEventListener("DOMContentLoaded", () => {
         sunlight: { sunlight: "full sun" },
         watering: { watering: "Frequent" }
     };
-    async function openModal(plant) {
-        try {
-            const API_KEY = "sk-PTgQ69e5201a36de015454";
-            const res = await fetch(`https://perenual.com/api/v2/species/details/${plant.id}?key=${API_KEY}`);
-            const details = await res.json();
 
-            const image = details.default_image?.original_url || plant.default_image?.original_url || '';
-            const commonName = details.common_name || plant.common_name || 'Unknown plant';
-            const scientificName = Array.isArray(details.scientific_name) ? details.scientific_name[0] : 'N/A';
-            const family = details.family || plant.family || 'N/A';
-            const origin = Array.isArray(details.origin) ? details.origin.join(', ') : 'N/A';
-            const type = details.type || plant.type || 'N/A';
-            const cycle = details.cycle || plant.cycle || 'N/A';
-            const watering = details.watering || plant.watering || 'N/A';
-            const sunlight = Array.isArray(details.sunlight) ? details.sunlight.join(', ') : 'N/A';
-            const hardiness = details.hardiness
-                ? `${details.hardiness.min || 'N/A'} - ${details.hardiness.max || 'N/A'}°C`
-                : 'N/A';
-            const wateringBenchmark = details.watering_general_benchmark
-                ? `${details.watering_general_benchmark.value || 'N/A'} ${details.watering_general_benchmark.unit || ''}`
-                : 'N/A';
-            const description = details.description || 'No description available.';
+    async function openModal(plant) {
+        modalContainer.classList.add("open");
+
+        modalContainer.innerHTML = `
+        <div class="modal_container_content">
+          <div class="modal_container_content_info">
+            <p class="modal_container_content_info_name">Loading plant...</p>
+            <h2 class="modal_container_content_info_title">Please wait</h2>
+            <p class="modal_container_content_info_description">
+              We are loading the details for this plant.
+            </p>
+          </div>
+        </div>`;
+
+        try {
+            const details = await getPlantDetails(plant.id);
+
+            const image = details.default_image?.original_url || plant.default_image?.original_url || "";
+
+            const commonName = details.common_name || plant.common_name || "Unknown plant";
+
+            const scientificName = Array.isArray(details.scientific_name) ? details.scientific_name[0] : "N/A";
+
+            const family = details.family || plant.family || "N/A";
+
+            const origin = Array.isArray(details.origin) ? details.origin.join(", ") : "N/A";
+
+            const type = details.type || plant.type || "N/A";
+
+            const cycle = details.cycle || plant.cycle || "N/A";
+
+            const watering = details.watering || plant.watering || "N/A";
+
+            const sunlight = Array.isArray(details.sunlight) ? details.sunlight.join(", ") : "N/A";
+
+            const hardiness = details.hardiness ? `${details.hardiness.min || "N/A"} - ${details.hardiness.max || "N/A"}°C` : "N/A";
+
+            const wateringBenchmark = details.watering_general_benchmark? `${details.watering_general_benchmark.value || "N/A"} ${details.watering_general_benchmark.unit || ""}` : "N/A";
+
+            const description = details.description || "No description available.";
 
             const badges = [
-                type ? `Type: ${details.type}` : null,
-                cycle ? `Cycle: ${details.cycle}` : null,
-                sunlight ? `Sunlight: ${sunlight.split(',')[0] || 'Sun'}` : null,
-                details.leaf ? `Has leaf: ${details.leaf}` : null,
+                type !== "N/A" ? `Type: ${type}` : null,
+                details.leaf !== undefined ? `Leaf: ${details.leaf}` : null,
                 details.flowering_season ? `Season: ${details.flowering_season}` : null,
                 details.growth_rate ? `Growth: ${details.growth_rate}` : null,
             ].filter(Boolean);
 
-            modalContainer.innerHTML = `
-      <div class="modal_container_content">
-        <div class="modal_container_content_image">
-          ${image ? `<img src="${image}" alt="${commonName}">` : ''}
-        </div>
+            modalContainer.innerHTML = `<div class="modal_container_content">${image ? `<div class="modal_container_content_image"><img src="${image}" alt="${commonName}" loading="lazy"></div>` : ""}
 
         <div class="modal_container_content_info">
-          <p class="modal_container_content_info_name">${commonName}</p>
-          <h2 class="modal_container_content_info_title">${scientificName}</h2>
-          <p class="modal_container_content_info_category">${family}</p>
+          <p class="modal_container_content_info_name">${family}</p>
 
-          <div class="modal_container_content_badges">
-            ${badges.map(badge => `<span class="modal_container_content_badge">${badge}</span>`).join('')}
-          </div>
+          <h2 class="modal_container_content_info_title">${commonName}</h2>
 
-          <p class="modal_container_content_info_description">${description}</p>
+          <p class="modal_container_content_info_category">
+            <span><em>${scientificName}</em></span>
+          </p>
+
+          ${badges.length > 0 ? `<div class="modal_container_content_badges">${badges.map((badge) => `<span class="modal_container_content_badge">${badge}</span>`).join("")}</div>` : ""}
+
+          <p class="modal_container_content_info_description">
+            ${description}
+          </p>
 
           <div class="modal_container_content_details">
             <div class="modal_container_content_detail">
               <span class="modal_container_content_detail_label">Origin</span>
               <span class="modal_container_content_detail_value">${origin}</span>
             </div>
+
             <div class="modal_container_content_detail">
-              <span class="modal_container_content_detail_label">Watering benchmark</span>
+              <span class="modal_container_content_detail_label">Watering</span>
+              <span class="modal_container_content_detail_value">${watering}</span>
+            </div>
+
+            <div class="modal_container_content_detail">
+              <span class="modal_container_content_detail_label">Sunlight</span>
+              <span class="modal_container_content_detail_value">${sunlight}</span>
+            </div>
+
+            <div class="modal_container_content_detail">
+              <span class="modal_container_content_detail_label">Hardiness</span>
+              <span class="modal_container_content_detail_value">${hardiness}</span>
+            </div>
+
+            <div class="modal_container_content_detail">
+              <span class="modal_container_content_detail_label">Cycle</span>
+              <span class="modal_container_content_detail_value">${cycle}</span>
+            </div>
+
+            <div class="modal_container_content_detail">
+              <span class="modal_container_content_detail_label">Benchmark</span>
               <span class="modal_container_content_detail_value">${wateringBenchmark}</span>
             </div>
           </div>
         </div>
-      </div>
-    `;
+       </div>`;
 
-            modalContainer.classList.add('open');
-            modalContainer.querySelector('.modal_container_content_close').addEventListener('click', closeModal);
         } catch (error) {
-            console.error('openModal error:', error);
+            console.error("Error modal:", error);
+
+            modalContainer.innerHTML = `
+              <div class="modal_container_content">
+                <div class="modal_container_content_info">
+                  <p class="modal_container_content_info_name">Error</p>
+                  <h2 class="modal_container_content_info_title">Unable to load this plant</h2>
+                  <p class="modal_container_content_info_description">
+                    Something went wrong while loading the plant details.
+                  </p>
+                </div>
+              </div>
+    `;
         }
     }
 
@@ -140,6 +188,10 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             navbarFavoriteButton.innerHTML = `<ion-icon class="card_container_item_content_intern_top_icon_sparkles" name="sparkles-outline"></ion-icon>`;
         }
+    }
+
+    function saveFavorites() {
+        localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
     }
 
     function applyTheme(theme) {
@@ -179,6 +231,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             favorites.push(plant);
         }
+
+        saveFavorites();
 
         updateNavbarFavoriteIcon();
 
