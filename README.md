@@ -6,21 +6,14 @@ This repository is all about making a fully responsive website for school with A
 
 ## Features
 
-    - Browse a plant gallery with dynamic cards loaded from the Perenual API.
-
-    - Search plants by name with instant query handling from the search bar.
-
-    - Filter plants by category such as indoor, outdoor, edible, poisonous, hardiness, sunlight, and watering needs.
-
-    - Open a detailed modal for each plant with origin, family, cycle, sunlight, watering, hardiness, and extra botanical information.
-
-    - Save favorite plants and switch to a dedicated favorites view.
-
-    - Toggle between light mode and dark mode for a better reading experience.
-
-    - Load more results with pagination support.
-
-    - Responsive interface optimized for desktop, tablet, and mobile screens.
+    - Plant gallery powered by the Perenual API
+    - Search plants by name
+    - Category-based filtering
+    - Detailed plant modal with botanical information
+    - Favorites system
+    - Light / dark mode toggle
+    - Pagination with “load more” button
+    - Responsive design for mobile and desktop
 
 
 ## Acknowledgements
