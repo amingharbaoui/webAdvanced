@@ -16,6 +16,14 @@ This repository is all about making a fully responsive website for school with A
     - Responsive design for mobile, tablet and desktop
 
 
+## API Usage
+
+![Rate Limit](https://img.shields.io/badge/Rate%20Limit-100%20req%2Fday-blue?style=flat&logo=apipost)
+
+- **Limit**: 100 requests per day
+- **Exceeded?**: Retry next day
+
+
 
 ## Screenshots
 
